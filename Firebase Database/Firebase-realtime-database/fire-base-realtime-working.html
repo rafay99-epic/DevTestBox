@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Connection: Future Insight</title>
+  
+  <!-- Css File -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <linl rel="stylesheet" href="/css/style.css"></linl>
+
+  <!-- JavaScript Files -->
+  <script defer src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+  <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js"></script>
+  <script defer src="/js/autodate.js"></script>
+  <script defer src="/js/firebase-connection.js"></script>
+  
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Project Assignment Form</h1>
+    <form id="assignment-form">
+      <div class="form-group">
+        <label for="fullname">Enter your full name:</label>
+        <input type="text" id="fullname" name="fullname" class="form-control" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Enter your email:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="phone">Enter your phone number:</label>
+        <input type="tel" id="phone" name="phone" class="form-control" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="domain">Select your Domain:</label>
+        <select id="domain" name="domain" class="form-control" required>
+          <option value="">-- Select Domain --</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Mobile App Development">Mobile App Development</option>
+          <option value="Data Science">Data Science</option>
+          <!-- Add more domain options as needed -->
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="package">Select your package:</label>
+        <select id="package" name="package" class="form-control" required>
+          <option value="">-- Select Package --</option>
+          <option value="Basic">Basic</option>
+          <option value="Standard">Standard</option>
+          <option value="Premium">Premium</option>
+          <!-- Add more package options as needed -->
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="assignment-file">Upload your Assignment question or requirements:</label>
+        <input type="file" id="assignment-file" name="assignment-file" class="form-control-file" accept=".pdf, .doc, .docx" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="current-date">Current Date:</label>
+        <input type="date" id="current-date" name="current-date" class="form-control" disabled required>
+      </div>
+  
+      <div class="form-group">
+        <label for="deadline">Deadline of the Project/Assignment:</label>
+        <input type="date" id="deadline" name="deadline" class="form-control" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  
+    <div id="result" style="display: none;">
+      <h2>Your project is assigned!</h2>
+      <!-- Additional result information can be displayed here -->
+    </div>
+  </div>
+  
+  <!-- <script>
+    
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBN26OZKDjZUwWKcU2zWbEhU7WGme1wYhM",
+      authDomain: "future-insight-project-d-80cff.firebaseapp.com",
+      projectId: "future-insight-project-d-80cff",
+      storageBucket: "future-insight-project-d-80cff.appspot.com",
+      messagingSenderId: "448034602560",
+      appId: "1:448034602560:web:355cd2b70da4a07df769a5",
+      measurementId: "G-FWKZLBB4F6"
+    };
+  
+    firebase.initializeApp(firebaseConfig);
+  
+    // Reference messages collection
+    var messagesRef = firebase.database().ref('messages');
+  
+    // Listen for form submit
+    $('#assignment-form').on('submit', function(e) {
+      e.preventDefault();
+  
+      // Get values
+      var name = $('#fullname').val();
+      var email = $('#email').val();
+      var phone = $('#phone').val();
+      var domain = $('#domain').val();
+      var package = $('#package').val();
+      var currentDate = $('#current-date').val();
+      var deadline = $('#deadline').val();
+  
+      // Save message
+      saveMessage(name, email, phone, domain, package, currentDate, deadline);
+  
+      // Show result
+      $('#result').show();
+  
+      // Clear form
+      $('#assignment-form')[0].reset();
+    });
+  
+    // Save message to Firebase
+    function saveMessage(name, email, phone, domain, package, currentDate, deadline) {
+      var newMessageRef = messagesRef.push();
+      newMessageRef.set({
+        name: name,
+        email: email,
+        phone: phone,
+        domain: domain,
+        package: package,
+        currentDate: currentDate,
+        deadline: deadline
+      });
+    }
+  </script> -->
+</body>
+</html>

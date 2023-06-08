@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.circle img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+    </style>
+</head>
+<body>
+    <div class="circle">
+  <img id="image" src="/home/prometheus/GitHub-Projects/Future-Insight/static/images/16.png" alt="Your Image">
+</div>
+<a id="download-link" download="circular-image.png" style="display: none;">Download Circular Image</a>
+    <script>
+        // Get the image element
+const image = document.getElementById('image');
+
+// Create a canvas element
+const canvas = document.createElement('canvas');
+canvas.width = image.width;
+canvas.height = image.height;
+
+// Get the canvas context
+const context = canvas.getContext('2d');
+
+// Draw the image on the canvas in a circular shape
+context.beginPath();
+context.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, 2 * Math.PI);
+context.closePath();
+context.clip();
+context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+// Convert the canvas to a data URL
+const dataUrl = canvas.toDataURL();
+
+// Get the download link element
+const downloadLink = document.getElementById('download-link');
+
+// Set the data URL as the href attribute of the download link
+downloadLink.href = dataUrl;
+
+// Show the download link
+downloadLink.style.display = 'block';
+
+    </script>
+</body>
+</html>

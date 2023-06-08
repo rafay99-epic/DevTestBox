@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MongoDB Atlas Connection: Future Insight</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Project Assignment Form</h1>
+    <form id="assignment-form">
+      <div class="form-group">
+        <label for="fullname">Enter your full name:</label>
+        <input type="text" id="fullname" name="fullname" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Enter your email:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Enter your phone number:</label>
+        <input type="tel" id="phone" name="phone" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="domain">Select your Domain:</label>
+        <select id="domain" name="domain" class="form-control" required>
+          <option value="">-- Select Domain --</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Mobile App Development">Mobile App Development</option>
+          <option value="Data Science">Data Science</option>
+          <!-- Add more domain options as needed -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="package">Select your package:</label>
+        <select id="package" name="package" class="form-control" required>
+          <option value="">-- Select Package --</option>
+          <option value="Basic">Basic</option>
+          <option value="Standard">Standard</option>
+          <option value="Premium">Premium</option>
+          <!-- Add more package options as needed -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="assignment-file">Upload your Assignment question or requirements:</label>
+        <input type="file" id="assignment-file" name="assignment-file" class="form-control-file" accept=".pdf, .doc, .docx" required>
+      </div>
+
+      <div class="form-group">
+        <label for="current-date">Current Date:</label>
+        <input type="date" id="current-date" name="current-date" class="form-control" disabled required>
+      </div>
+
+      <div class="form-group">
+        <label for="deadline">Deadline of the Project/Assignment:</label>
+        <input type="date" id="deadline" name="deadline" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div id="result" style="display: none;">
+      <h2>Your project is assigned!</h2>
+      <!-- Additional result information can be displayed here -->
+    </div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBN26OZKDjZUwWKcU2zWbEhU7WGme1wYhM",
+      authDomain: "future-insight-project-d-80cff.firebaseapp.com",
+      databaseURL: "https://future-insight-project-d-80cff-default-rtdb.firebaseio.com",
+      projectId: "future-insight-project-d-80cff",
+      storageBucket: "future-insight-project-d-80cff.appspot.com",
+      messagingSenderId: "448034602560",
+      appId: "1:448034602560:web:355cd2b70da4a07df769a5",
+      measurementId: "G-FWKZLBB4F6"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the Firestore database
+    const db = firebase.firestore();
+
+    // Get references to the HTML elements
+    const form = document.getElementById('assignment-form');
+    const resultContainer = document.getElementById('result');
+
+    // Handle form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Get form values
+      const fullName = form.elements.fullname.value;
+      const email = form.elements.email.value;
+      const phone = form.elements.phone.value;
+      const domain = form.elements.domain.value;
+      const package = form.elements.package.value;
+      const assignmentFile = form.elements['assignment-file'].files[0];
+      const currentDate = new Date().toISOString().split('T')[0];
+      const deadline = form.elements.deadline.value;
+
+      // Store form data in Cloud Firestore
+      db.collection('assignments')
+        .add({
+          fullName,
+          email,
+          phone,
+          domain,
+          package,
+          currentDate,
+          deadline
+        })
+        .then(() => {
+          // Clear form fields
+          form.reset();
+
+          // Show the result container
+          resultContainer.style.display = 'block';
+        })
+        .catch((error) => {
+          console.error('Error storing form data:', error);
+        });
+    });
+  </script>
+</body>
+</html>
+
