@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Price Table</title>
+  <style>
+    /* Styles for the price table */
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .price-table th,
+    .price-table td {
+      padding: 10px;
+      text-align: center;
+    }
+    
+    .price-table th {
+      background-color: #f2f2f2;
+    }
+    
+    .price-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    .price-table tr:hover {
+      background-color: #e6e6e6;
+    }
+    
+    /* Styles for the pricing plan */
+    .pricing-plan {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .price {
+      font-size: 28px;
+    }
+    
+    .features {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+    
+    .features li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <label for="tableHeight">Table Height:</label>
+  <input type="text" id="tableHeight" placeholder="Enter table height">
+  <button onclick="setTableHeight()">Set Height</button> -->
+
+  <table data-height="2000" id="priceTable" class="price-table">
+    <thead>
+      <tr>
+        <th>Plan</th>
+        <th>Price</th>
+        <th>Features</th>
+        <th>Subscribe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pricing-plan">Basic</td>
+        <td class="price">$9.99/month</td>
+        <td>
+          <ul class="features">
+            <li>Feature 1</li>
+            <li>Feature 2</li>
+            <li>Feature 3</li>
+          </ul>
+        </td>
+        <td><button>Subscribe</button></td>
+      </tr>
+      <tr>
+        <td class="pricing-plan">Pro</td>
+        <td class="price">$19.99/month</td>
+        <td>
+          <ul class="features">
+            <li>Feature 1</li>
+            <li>Feature 2</li>
+            <li>Feature 3</li>
+            <li>Feature 4</li>
+          </ul>
+        </td>
+        <td><button>Subscribe</button></td>
+      </tr>
+      <tr>
+        <td class="pricing-plan">Premium</td>
+        <td class="price">$29.99/month</td>
+        <td>
+          <ul class="features">
+            <li>Feature 1</li>
+            <li>Feature 2</li>
+            <li>Feature 3</li>
+            <li>Feature 4</li>
+            <li>Feature 5</li>
+          </ul>
+        </td>
+        <td><button>Subscribe</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        var table = document.getElementById('priceTable');
+        var heightValue = table.getAttribute('data-height');
+        table.style.height = heightValue + 'px';
+      });
+            
+  </script>
+</body>
+</html>
